@@ -15,7 +15,7 @@ If you need real help, please check out [The Rust Programming Language book](htt
 ```bash
 cargo run --example <option>
 ```
-Check [src/main.rs](./src/main.rs#L12-L15) or don't provide any option to see all `--example` options.  
+Check [src/main.rs](./src/main.rs#L16) or don't provide any option to see all `--example` options.  
 Some examples contain additional arguments. Usually you can check them out with
 ```bash
 cargo run --example <option> --help
