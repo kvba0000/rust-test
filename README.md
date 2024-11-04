@@ -9,6 +9,7 @@ If you need real help, please check out [The Rust Programming Language book](htt
 
 - [Fibonacci Calculation](./src/examples/fibonacci.rs)
 - [Celsius to Fahrenheit Conversion](./src/examples/celsius.rs)
+- [Ownership and borrowing](./src/examples/ownership.rs)
 
 ## Usage
 
