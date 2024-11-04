@@ -7,8 +7,8 @@ If you need real help, please check out [The Rust Programming Language book](htt
 
 ## Examples
 
-- [Fibonacci Calculation](./src/fibonacci.rs)
-- [Celsius to Fahrenheit Conversion](./src/celsius.rs)
+- [Fibonacci Calculation](./src/examples/fibonacci.rs)
+- [Celsius to Fahrenheit Conversion](./src/examples/celsius.rs)
 
 ## Usage
 
