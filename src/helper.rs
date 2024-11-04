@@ -23,7 +23,7 @@ pub fn get_num_from_input(prompt: &str) -> f64 {
     loop {
         let mut choice = String::new();
 
-        println!("{}", prompt);
+        println!("{}", &prompt);
         stdin().read_line(&mut choice).ok();
 
         match choice.trim().parse() {

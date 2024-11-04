@@ -9,17 +9,17 @@ const ARGS: &[(&str, &str, &str)] = &[
     ("skiprest", "--skiprest", "Skip calculating numbers before the goal"),
 ];
 
-fn calculate_fibonacci(num: u8) -> u128 {
+fn calculate_fibonacci(num: &u8) -> u128 {
     // Using Binet's formula: Fₙ = (φⁿ - (-φ)⁻ⁿ)/√5 where φ = (1 + √5)/2
     let phi: f64 = (1.0 + 5.0_f64.sqrt()) / 2.0;
     let sqrt5 = 5.0_f64.sqrt();
     
     // Calculate using floating point then round to nearest integer
-    let n = f64::from(num);
+    let n = f64::from(*num);
     let result = ((phi.powf(n) - ((-phi).powf(-n))) / sqrt5).round() as u128;
     
     if result >= u128::MAX {
-        println!("Fibonacci number {} would overflow u128", num);
+        println!("Fibonacci number {} would overflow u128", &num);
         exit(1);
     }
 
@@ -35,7 +35,7 @@ pub fn fibonacci_init() {
     let goal: u8 = match get_option_val("goal").unwrap_or_default().parse() {
         Ok(v) => { v }
         Err(_) => {
-            println!("Invalid --goal argument. Using default ({})", FIBONACCI_MAX);
+            println!("Invalid --goal argument. Using default ({})", &FIBONACCI_MAX);
             sleep(Duration::from_secs(2));
 
             FIBONACCI_MAX
@@ -45,7 +45,7 @@ pub fn fibonacci_init() {
     let skip_rest: bool = get_option("skiprest").is_some();
     
     for i in (if skip_rest { goal } else { 2 })..=goal {
-        let num = calculate_fibonacci(i);
+        let num = calculate_fibonacci(&i);
         println!("Fibonacci number for {} is {}", i, num)
     }
 }    
