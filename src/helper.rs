@@ -23,12 +23,18 @@ pub fn get_num_from_input(prompt: &str) -> f64 {
     loop {
         let mut choice = String::new();
 
-        println!("{}", &prompt);
-        stdin().read_line(&mut choice).ok();
+        get_string_from_input(&prompt, &mut choice);
 
         match choice.trim().parse() {
             Ok(n) => break n,
             Err(_) => println!("Couldn't get the number! Try again!")
         };
     }
+}
+
+pub fn get_string_from_input(prompt: &str, buf: &mut String) {
+    println!("{}", &prompt);
+
+    stdin().read_line(buf).unwrap_or_default();
+    *buf = buf.trim().to_string();
 }

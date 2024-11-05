@@ -10,13 +10,15 @@ If you need real help, please check out [The Rust Programming Language book](htt
 - [Fibonacci Calculation](./src/examples/fibonacci.rs)
 - [Celsius to Fahrenheit Conversion](./src/examples/celsius.rs)
 - [Ownership and borrowing](./src/examples/ownership.rs)
+- [Rectangle/square examples using structs](./src/examples/rectangle.rs)
+- [User register logic using structs](./src/examples/user.rs)
 
 ## Usage
 
 ```bash
 cargo run --example <option>
 ```
-Check [src/main.rs](./src/main.rs#L16) or don't provide any option to see all `--example` options.  
+Check [src/main.rs](./src/main.rs#L22) or don't provide any option to see all `--example` options.  
 Some examples contain additional arguments. Usually you can check them out with
 ```bash
 cargo run --example <option> --help
