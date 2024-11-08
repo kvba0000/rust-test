@@ -32,6 +32,15 @@ pub fn get_num_from_input(prompt: &str) -> f64 {
     }
 }
 
+pub fn get_bool_from_input(prompt: &str) -> bool {
+    let prompt = format!("{} (y/N)", prompt);
+    let mut choice = String::new();
+
+    get_string_from_input(&prompt, &mut choice);
+
+    choice.trim().to_lowercase() == "y"
+}
+
 pub fn get_string_from_input(prompt: &str, buf: &mut String) {
     println!("{}", &prompt);
 

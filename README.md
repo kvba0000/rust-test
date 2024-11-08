@@ -12,13 +12,15 @@ If you need real help, please check out [The Rust Programming Language book](htt
 - [Ownership and borrowing](./src/examples/ownership.rs)
 - [Rectangle/square examples using structs](./src/examples/rectangle.rs)
 - [User register logic using structs](./src/examples/user.rs)
+- [IP object building with enums and structs](./src/examples/ip.rs)
+- [Requesting data from an example API](./src/examples/request_test.rs)
 
 ## Usage
 
 ```bash
 cargo run --example <option>
 ```
-Check [src/main.rs](./src/main.rs#L22) or don't provide any option to see all `--example` options.  
+Check [src/main.rs](./src/main.rs) or don't provide any option to see all `--example` options.  
 Some examples contain additional arguments. Usually you can check them out with
 ```bash
 cargo run --example <option> --help

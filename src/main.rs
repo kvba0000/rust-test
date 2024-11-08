@@ -5,6 +5,8 @@ mod examples {
     pub mod ownership;
     pub mod user;
     pub mod rectangle;
+    pub mod ip;
+    pub mod request_test;
 }
 
 
@@ -16,7 +18,10 @@ use crate::examples::{
     celsius::celsius_init,
     ownership::ownership_init,
     user::user_init,
-    rectangle::rectangle_init
+    rectangle::rectangle_init,
+    ip::ip_init,
+    request_test::request_init
+    
 };
 
 const OPTIONS: &[(&str, &str, fn())] = &[
@@ -25,6 +30,8 @@ const OPTIONS: &[(&str, &str, fn())] = &[
     ("ownership", "Ownership borrowing and moving", ownership_init),
     ("user", "User register logic showed on structs", user_init),
     ("rectangle", "Rectangle area calculation with structs", rectangle_init),
+    ("ip", "IP Detection and object building with enums and structs", ip_init),
+    ("request", "Making simple request with reqwest crate", request_init)
 ];
 
 fn show_help() {
