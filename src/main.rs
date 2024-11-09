@@ -35,20 +35,29 @@ const OPTIONS: &[(&str, &str, fn())] = &[
 ];
 
 fn show_help() {
-    println!("Invalid option! You can use the following options:\n");
-    for ( name, description, _ ) in OPTIONS {
-        println!("\t--example {} ({})", name, description);
-    }
+    let options = OPTIONS
+        .iter()
+        .map(|o| format!("--{} ({})", o.0, o.1))
+        .collect::<Vec<_>>()
+        .join("\n");
+
+    println!("Unknown option! You can use the following options:\n{}", options);
     exit(1);
 }
 
 fn main() {
+    let option = get_option_val("example").unwrap_or_default();
 
-    let example = get_option_val("example").unwrap_or_default();
+    if option == String::default() {
+        show_help();
+    }
 
     let func = OPTIONS.iter()
-        .find(|opt| *opt.0 == *example.as_str())
-        .map_or(show_help as fn(), |opt| opt.2);
+        .find(|o| o.0 == option)
+        .map_or(
+            show_help as fn(),
+            |opt| opt.2
+        );
 
     func()
 }

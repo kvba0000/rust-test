@@ -1,12 +1,9 @@
-use std::u8;
-
 use rand::Rng;
 
 use crate::helper::{get_bool_from_input, get_string_from_input};
 
-const GET_ENDPOINT_URL: &str = "https://jsonplaceholder.typicode.com/users";
-const POST_ENDPOINT_URL: &str = "https://jsonplaceholder.typicode.com/posts";
 
+type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 #[derive(Debug, serde::Deserialize)]
 #[allow(dead_code)]
 struct Geo {
@@ -60,7 +57,7 @@ struct PostRequest {
     body: String
 }
 
-pub async fn try_create_post(client: &reqwest::Client) {
+async fn try_create_post(client: &reqwest::Client) -> Result<()> {
     let id = rand::thread_rng().gen_range(u8::MIN..u8::MAX);
     let mut title = String::new();
     let mut body = String::new();
@@ -74,21 +71,20 @@ pub async fn try_create_post(client: &reqwest::Client) {
         body
     };
 
-    let resp: PostResponse = client.post(POST_ENDPOINT_URL)
+    let resp: PostResponse = client.post("https://jsonplaceholder.typicode.com/posts")
         .json(&post)
-        .send().await.expect("Failed to get response. Try to use other endpoint")
-        .json().await.expect("Couldn't parse JSON!");
+        .send().await?
+        .json().await?;
 
     println!("Response: {:#?}", resp);
+
+    Ok(())
 }
 
-#[tokio::main]
-pub async fn request_init() {
-    let client = reqwest::Client::new();
-        
-    let resp: Vec<User> = client.get(GET_ENDPOINT_URL)
-        .send().await.expect("Failed to get response. Try to use other endpoint")
-        .json().await.expect("Failed to parse JSON!");
+async fn try_get_users(client: &reqwest::Client) -> Result<()> {
+    let resp: Vec<User> = client.get("https://jsonplaceholder.typicode.com/users")
+        .send().await?
+        .json().await?;
 
     let users = resp
         .iter()
@@ -98,9 +94,17 @@ pub async fn request_init() {
 
     println!("Users:\n{}\nWARNING: They are not real users!", users);
 
-    
+    Ok(())
+}
+
+#[tokio::main]
+pub async fn request_init() {
+    let client = reqwest::Client::new();
+
+    let _ = try_get_users(&client).await;
+
     let try_create = get_bool_from_input("Do you want to try post creating? w/POST method request");
-    if try_create {
-        try_create_post(&client).await;
+    if try_create { 
+        let _ = try_create_post(&client).await;
     }
 }

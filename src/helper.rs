@@ -1,4 +1,4 @@
-use std::{env::args_os, io::stdin};
+use std::{env::args_os, io::{stdin, stdout, Write}};
 
 pub fn get_option_val(name: &str) -> Option<String> {
     let num_index = get_option(name);
@@ -42,7 +42,8 @@ pub fn get_bool_from_input(prompt: &str) -> bool {
 }
 
 pub fn get_string_from_input(prompt: &str, buf: &mut String) {
-    println!("{}", &prompt);
+    print!("{} ", &prompt);
+    stdout().flush().unwrap();
 
     stdin().read_line(buf).unwrap_or_default();
     *buf = buf.trim().to_string();

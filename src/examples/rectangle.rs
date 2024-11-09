@@ -1,8 +1,7 @@
 use crate::helper::get_num_from_input;
 
-#[derive(Debug)]
-
 // Simple implementation of Rectangle struct
+#[derive(Debug)]
 struct Rectangle {
     width: f64,
     height: f64
@@ -55,14 +54,18 @@ pub fn rectangle_init() {
 
     let square1 = Rectangle::square(40.0);
 
-    println!("Rectangle 1: {:?}", &rect1);
-    println!("Rectangle 2: {:?}", &rect2);
-    println!("Square 1: {:?}", &square1); // <- We created square using square function in Rectangle implementation
-
     // can_hold will return true if Rectangle 2 can be contained inside of Rectangle 1
     // is_square will return true if Rectangle's both sides are equal
+
+    println!(
+        "Rectangle 1: {:?}\nRectangle 2: {:?}\nSquare 1: {:?}",
+        &rect1, &rect2, &square1
+    );
     
-    println!("Area of rectangle 1 is {}", &rect1.area());
-    println!("Rectangle 1 {} hold Rectangle 2!", if (&rect1).can_hold(&rect2) {"can"} else {"can't"});
-    println!("Rectangle 1 {} square!", if (&rect1).is_square() {"is"} else {"is not"});
+    println!(
+        "Area of rectangle 1 is {}\nRectangle 1 {} hold Rectangle 2!\nRectangle 1 {} square!",
+        &rect1.area(),
+        if (&rect1).can_hold(&rect2) {"can"} else {"can't"},
+        if (&rect1).is_square() {"is"} else {"is not"}
+    );
 }

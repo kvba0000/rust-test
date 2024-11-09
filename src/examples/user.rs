@@ -1,4 +1,4 @@
-use sonyflake::Sonyflake;
+use rand::Rng;
 
 use crate::helper::{get_num_from_input, get_string_from_input};
 
@@ -13,7 +13,9 @@ struct User {
 
 fn build_user(username: String, age: u8) -> User {
     User {
-        id: Sonyflake::new().unwrap().next_id().unwrap(),
+        // In normal case uses we wouldn't use something like this before
+        // ...it might cause collision in database
+        id: rand::thread_rng().gen_range(u64::MIN..u64::MAX),
         username,
         active: true,
         age

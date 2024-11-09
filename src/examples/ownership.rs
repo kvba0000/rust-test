@@ -6,19 +6,20 @@ pub fn ownership_init() {
         let x = "meow";
         let mut y = x;
 
-        println!("BEFORE y MODIFICATION x: {}", x);
-        println!("BEFORE y MODIFICATION y: {}", y);
-
+        println!(
+            "BEFORE y MODIFICATION x: {}\nBEFORE y MODIFICATION y: {}",
+            x, y
+        );
         y = "woof";
 
-        println!("AFTER y MODIFICATION x: {}", x);
-        println!("AFTER y MODIFICATION y: {}", y);
+        println!(
+            "AFTER y MODIFICATION x: {}\nAFTER y MODIFICATION y: {}",
+            x, y
+        );
 
         // Nothing bad happens here because we are not moving the ownership of the value.
         // We are moving literal value to another variable.
     }
-
-    println!("--------------------------------");
 
     // Presentation of cloning value to another variable
     {
@@ -26,13 +27,17 @@ pub fn ownership_init() {
         let x = String::from("meow");
         let mut y = x.clone(); // <- This is the point where the value of x is cloned
 
-        println!("BEFORE y MODIFICATION x: {}", x);
-        println!("BEFORE y MODIFICATION y: {}", y);
+        println!(
+            "BEFORE y MODIFICATION x: {}\nBEFORE y MODIFICATION y: {}",
+            x, y
+        );
 
         y.push_str("woof");
 
-        println!("AFTER y MODIFICATION x: {}", x);
-        println!("AFTER y MODIFICATION y: {}", y);
+        println!(
+            "AFTER y MODIFICATION x: {}\nAFTER y MODIFICATION y: {}",
+            x, y
+        );
 
         // Nothing bad happens here because we are not moving the ownership of the value.
         // We are cloning the value to another variable.
@@ -40,8 +45,6 @@ pub fn ownership_init() {
         // We can modify both values without any problems because both have different owners
         // Meaning they have different memory addresses
     }
-
-    println!("--------------------------------");
 
     // Presentation of moving ownership to another variable - making older variable invalid
     {
@@ -57,6 +60,4 @@ pub fn ownership_init() {
         // We cannot use x after this point because it no longer exists for Rust
         // From now on, y owns the value of x and variable "x" is no longer valid
     }
-
-    println!("Check the code for more details!");
 }

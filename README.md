@@ -25,3 +25,26 @@ Some examples contain additional arguments. Usually you can check them out with
 ```bash
 cargo run --example <option> --help
 ```
+## Building
+
+There are 2 ways to build the project that will be ready for release:
+
+```bash
+cargo build --release # builds the project in release mode (optimized)
+```
+...and
+```bash
+./build.sh # builds the project in release mode (optimized + applied additional optimization flags.)
+```
+Required for the second option to work:
+- nightly Rustup and Rust-src toolchain
+  ```bash
+  rustup toolchain install nightly
+  rustup component add rust-src --toolchain nightly
+  ```
+- `upx` package installed for the binary to be compressed on host machine
+  ```bash
+  sudo apt install upx-ucl # Use appropriate package manager for your OS.
+  ```
+
+Second option is recommended when possible - for getting the smallest binary size. Experience from using the file shouldn't be affected in normal cases. (5x smaller file size)
